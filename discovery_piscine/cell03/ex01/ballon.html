@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Balloon</title>
+
+<style>
+  body {
+    height: 100vh;
+    margin: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #balloon {
+    width: 200px;
+    height: 200px;
+
+    background-color: red;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+
+    cursor: pointer;
+    user-select: none;
+  }
+</style>
+</head>
+
+<body>
+
+<div id="balloon">200px</div>
+
+<script>
+  const balloon = document.getElementById("balloon");
+
+  let size = 200;
+  let colors = ["red", "green", "blue"];
+  let colorIndex = 0;
+
+  function updateBalloon() {
+    balloon.style.width = size + "px";
+    balloon.style.height = size + "px";
+    balloon.style.backgroundColor = colors[colorIndex];
+    balloon.textContent = size + "px";
+  }
+
+  balloon.addEventListener("click", () => {
+
+    size += 10;
+    colorIndex = (colorIndex + 1) % colors.length;
+
+    if (size > 420) {
+      size = 200;
+      colorIndex = 0;
+    }
+
+    updateBalloon();
+  });
+
+  balloon.addEventListener("mouseleave", () => {
+
+    size -= 5;
+
+    if (size < 200) {
+      size = 200;
+      return;
+    }
+
+    colorIndex--;
+
+    if (colorIndex < 0) {
+      colorIndex = colors.length - 1;
+    }
+
+    updateBalloon();
+  });
+</script>
+
+</body>
+</html>
