@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Calculator (jQuery)</title>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+
+  * {
+    box-sizing: border-box;
+    font-family: "Segoe UI", system-ui, sans-serif;
+  }
+
+  body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+  }
+
+  .calc {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .row {
+    display: flex;
+    gap: 10px;
+  }
+
+  input, select {
+    flex: 1;
+    padding: 10px 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    outline: none;
+    transition: 0.2s;
+  }
+
+  input:focus,
+  select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102,126,234,0.2);
+  }
+
+  button {
+    margin-top: 10px;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="calc">
+
+  <div class="title">It's Over 9000 Calculator</div>
+
+  <div class="row">
+    <input type="text" id="left" placeholder="Left number">
+
+    <select id="operator">
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="*">*</option>
+      <option value="/">/</option>
+      <option value="%">%</option>
+    </select>
+
+    <input type="text" id="right" placeholder="Right number">
+  </div>
+
+  <button id="btn">Try me!</button>
+
+</div>
+
+<script>
+$(document).ready(function() {
+
+  setInterval(function() {
+    alert("Please, use me...");
+  }, 30000);
+
+  $("#btn").click(function() {
+
+    const a = $("#left").val();
+    const b = $("#right").val();
+    const op = $("#operator").val();
+
+    if (!isPositiveInteger(a) || !isPositiveInteger(b)) {
+      alert("Error :(");
+      return;
+    }
+
+    const numA = Number(a);
+    const numB = Number(b);
+
+    if ((op === "/" || op === "%") && numB === 0) {
+      alert("It's over 9000!");
+      console.log("It's over 9000!");
+      return;
+    }
+
+    let result;
+
+    switch (op) {
+      case "+":
+        result = numA + numB;
+        break;
+
+      case "-":
+        result = numA - numB;
+        break;
+
+      case "*":
+        result = numA * numB;
+        break;
+
+      case "/":
+        result = numA / numB;
+        break;
+
+      case "%":
+        result = numA % numB;
+        break;
+    }
+
+    alert(result);
+    console.log(result);
+
+  });
+
+  function isPositiveInteger(value) {
+    return /^\d+$/.test(value);
+  }
+
+});
+</script>
+
+</body>
+</html>

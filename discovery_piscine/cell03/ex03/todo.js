@@ -1,10 +1,8 @@
 const list = document.getElementById("ft_list");
 const newBtn = document.getElementById("newBtn");
 
-// Load cookie when page loads
 loadTodos();
 
-// New button click
 newBtn.addEventListener("click", () => {
 
   const text = prompt("Enter a new TO DO:");
@@ -17,14 +15,12 @@ newBtn.addEventListener("click", () => {
   saveTodos();
 });
 
-// Create todo element
 function addTodo(text) {
 
   const div = document.createElement("div");
   div.className = "todo";
   div.textContent = text;
 
-  // Click to delete
   div.addEventListener("click", () => {
 
     const confirmDelete = confirm("Do you want to delete this TO DO?");
@@ -36,11 +32,9 @@ function addTodo(text) {
 
   });
 
-  // Add to TOP
   list.prepend(div);
 }
 
-// Save todos to cookie
 function saveTodos() {
 
   const todos = [];
@@ -52,7 +46,6 @@ function saveTodos() {
   document.cookie = "todos=" + encodeURIComponent(JSON.stringify(todos)) + "; path=/";
 }
 
-// Load todos from cookie
 function loadTodos() {
 
   const cookies = document.cookie.split("; ");
