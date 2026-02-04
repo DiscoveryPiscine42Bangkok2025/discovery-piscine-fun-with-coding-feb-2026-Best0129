@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Calculator</title>
+<title>Calculator (jQuery)</title>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <style>
 
@@ -46,12 +48,9 @@
   input, select {
     flex: 1;
     padding: 10px 12px;
-
     font-size: 16px;
-
     border-radius: 10px;
     border: 1px solid #ddd;
-
     outline: none;
     transition: 0.2s;
   }
@@ -103,21 +102,17 @@
 </div>
 
 <script>
+$(document).ready(function() {
 
-  const left = document.getElementById("left");
-  const right = document.getElementById("right");
-  const operator = document.getElementById("operator");
-  const button = document.getElementById("btn");
-
-  setInterval(() => {
+  setInterval(function() {
     alert("Please, use me...");
   }, 30000);
 
-  button.addEventListener("click", () => {
+  $("#btn").click(function() {
 
-    const a = left.value;
-    const b = right.value;
-    const op = operator.value;
+    const a = $("#left").val();
+    const b = $("#right").val();
+    const op = $("#operator").val();
 
     if (!isPositiveInteger(a) || !isPositiveInteger(b)) {
       alert("Error :(");
@@ -166,6 +161,7 @@
     return /^\d+$/.test(value);
   }
 
+});
 </script>
 
 </body>
