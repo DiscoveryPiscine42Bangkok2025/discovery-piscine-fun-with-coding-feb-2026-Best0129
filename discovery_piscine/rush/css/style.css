@@ -96,6 +96,11 @@ header {
   float: left;
 }
 
+.logo a {
+  text-decoration: none;
+  color: #bbb;
+}
+
 /* Navbar */
 
 nav {
